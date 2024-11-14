@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Niayesh</title>
+    <style>
+        body {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #FFB0B0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .main {
+            display: none;
+        }
+
+        #title{
+            text-align: center;
+        }
+        
+        .text{
+            margin-bottom: 3rem;
+            font-size: 3rem;
+            color: #091057;
+        }
+
+        .message {
+            font-size: 24px;
+            color: #433878;
+            font-weight: bold;
+            text-align: center;
+            transition: transform 0.5s;
+            margin-bottom: 3rem;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('./images/icons8-heart-100.png'); 
+            background-size: cover;
+            animation: fall linear infinite;
+        }
+
+        .btn{
+            text-decoration: none;
+            padding: 1rem 1.8rem;
+            border-radius: 30px;
+            color: #fff;
+            letter-spacing: 1px;
+            background: #7E60BF;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="title">
+        <h1 class="text" id="text">I have a surprise for you</h1>
+        <a href="#" class="btn" id="btn">Click babe</a> 
+    </div>
+
+    <div class="main" id="main">
+        <div id="message" class="message">Amin loves You :)</div> 
+        <audio autoplay loop id="loveSong">
+            <source src="./music/The_Sun_Will_Come_Out_Tomorrow-356295.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+<script>
+    const message = document.getElementById('message');
+
+    setInterval(() => {
+        message.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            message.style.transform = 'scale(1)';
+        }, 500);
+    }, 1000);
+
+
+
+
+let btn = document.getElementById('btn');
+const title = document.getElementById('title');
+btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    document.getElementById('main').style.display = "table";
+    title.style.display = "none";
+
+    function createFlowers() {
+    const flower = document.createElement('div');
+    flower.className = 'flower';
+    flower.style.left = Math.random() * window.innerWidth + 'px';
+    flower.style.animationDuration = Math.random() * 3 + 2 + 's'; 
+    document.body.appendChild(flower);
+
+
+    flower.addEventListener('animationend', () => {
+        flower.remove();
+    });
+}
+    setInterval(createFlowers, 500);
+
+    const loveSong = document.getElementById('loveSong');
+    loveSong.play();
+})
+</script>
+
+</body>
+</html>
+
